@@ -34,7 +34,7 @@ templates:
       host: localhost
       port: 9091
       username: admin
-      password: 186sgosbdgrp
+      password: adminpwd123
 tasks:
   download:
     priority: 1
@@ -50,10 +50,7 @@ tasks:
       regexp: '.*\.(avi|mkv|mp4)$'
       recursive: yes
     template: tv-series
-    require_field:
-      - series_name
-      - series_season
     accept_all: yes
     move:
       to: /media/disk1/tvshows/{{ tvdb_series_name  }}/Season {{ tvdb_season|pad(2) }}
-      rename: "{{ tvdb_series_name }}  - {{ tvdb_ep_id }} - {{ tvdb_ep_name }}"
+      rename: "{{ tvdb_series_name }} - {{ tvdb_ep_id }} - {{ tvdb_ep_name }}"

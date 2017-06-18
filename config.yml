@@ -16,7 +16,6 @@ templates:
       path: /media/disk1/tvshows/{{ tvdb_series_name }}
       allow_different_qualities: better
     thetvdb_lookup: yes
-    private_torrents: no
     regexp:
       reject:
         - CENSORED: {from: title}
@@ -29,6 +28,7 @@ templates:
         - INGLES: {from: title}
         - SUBTITUL: {from: title}
   torrent:
+    private_torrents: no
     transmission:
       enabled: yes
       host: localhost
@@ -49,8 +49,13 @@ tasks:
       path: /media/disk1/downloads/
       regexp: '.*\.(avi|mkv|mp4)$'
       recursive: yes
-    template: tv-series
+    seen: local
     accept_all: yes
+    template: tv-series
+    series:
+      settings:
+        agroup:
+          parse_only: yes
     move:
       to: /media/disk1/tvshows/{{ tvdb_series_name  }}/Season {{ tvdb_season|pad(2) }}
       rename: "{{ tvdb_series_name }} - {{ tvdb_ep_id }} - {{ tvdb_ep_name }}"

@@ -47,15 +47,18 @@ tasks:
     priority: 2
     filesystem:
       path: /media/disk1/downloads/
-      regexp: '.*\.(avi|mkv|mp4)$'
+      regexp: '.*\.(mkv)$'
       recursive: yes
-    seen: local
+      retrieve: files
+    thetvdb_lookup: yes
+    metainfo_series: yes
+    require_field: [tvdb_series_name, tvdb_season, tvdb_ep_name, tvdb_ep_id]
     accept_all: yes
-    template: tv-series
-    series:
-      settings:
-        agroup:
-          parse_only: yes
+    seen: local
+    disable:
+      - seen
+      - seen_info_hash
+      - retry_failed
     move:
       to: /media/disk1/tvshows/{{ tvdb_series_name  }}/Season {{ tvdb_season|pad(2) }}
       rename: "{{ tvdb_series_name }} - {{ tvdb_ep_id }} - {{ tvdb_ep_name }}"

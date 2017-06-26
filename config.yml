@@ -12,6 +12,9 @@ templates:
         set:
           content_filename: "{{ tvdb_series_name }} - {{ tvdb_ep_id }} - {{ tvdb_ep_name }}"
           main_file_only: yes
+    series:
+      - The Ministry of Time:
+         alternate_name: El Ministerio Del Tiempo
     exists_series:
       path: /media/disk1/tvshows/{{ tvdb_series_name }}
       allow_different_qualities: better

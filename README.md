@@ -1,1 +1,1 @@
-# flexget_newpct_config
+# flexget_config
